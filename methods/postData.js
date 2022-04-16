@@ -7,7 +7,8 @@ const postData = async (res, body) => {
         const newPost = await Post.create(data);
         successHandler(res, '新增成功', newPost);
     } catch(error) {
-        errorHandler(res, '新增失敗，欄位不正確');
+        const errorStr = Object.values(error.errors).map(item => item.message).join('、');
+        errorHandler(res, errorStr);
     }
 }
 
