@@ -31,7 +31,7 @@ const requestListener = async (req, res) => {
         res.writeHead(200, library.headers);
         res.write(JSON.stringify({
             "status": "success",
-            "message": "取得成功",
+            "message": "取得成功12345",
             "data": posts
         }))
         res.end();
@@ -88,7 +88,7 @@ const requestListener = async (req, res) => {
         res.writeHead(200, library.headers);
         res.end();
     } else {
-        res.writeHead(404, headers);
+        res.writeHead(404, library.headers);
         res.write(JSON.stringify({
             "status": "false",
             "message": "無此網站路由"
