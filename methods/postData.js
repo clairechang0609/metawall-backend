@@ -1,7 +1,7 @@
 const { successHandler, errorHandler } = require('../handler');
 const Post = require('../models/post');
 
-const postData = async (req, res, body) => {
+const postData = (req, res, body) => {
     req.on('end', async () => {
         try {
             const data = JSON.parse(body);
