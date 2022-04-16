@@ -14,7 +14,7 @@ const deleteSingleData = async (req, res) => {
         await Post.findByIdAndDelete(id);
         successHandler(res, '刪除成功');
     } catch(error) {
-        errorHandler(res, '刪除失敗');
+        errorHandler(res, '刪除失敗，查無此id');
     }
 }
 

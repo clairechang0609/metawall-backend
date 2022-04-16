@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Post = require('./models/post');
 const library = require('./library');
 const getData = require('./methods/getData');
+const postData = require('./methods/postData');
 const { deleteAllData, deleteSingleData } = require('./methods/deleteData');
 const { successHandler, errorHandler } = require('./handler');
 const dotenv = require('dotenv');
@@ -19,7 +20,7 @@ mongoose.connect(DB)
         console.log('資料庫連線成功');
     })
     .catch(error => {
-        console.log(error);
+        console.log('資料庫連線失敗', error);
     });
 
 const requestListener = async (req, res) => {
@@ -31,27 +32,7 @@ const requestListener = async (req, res) => {
     if (req.url === '/posts' && req.method === 'GET') {
         getData(res);
     } else if ((req.url === '/posts' && req.method === 'POST')) {
-        req.on('end', async () => {
-            try {
-                const data = JSON.parse(body);
-                const newPost = await Post.create(data)
-                res.writeHead(200, library.headers);
-                res.write(JSON.stringify({
-                    "status": "success",
-                    "message": "新增成功",
-                    "data": newPost
-                }))
-                res.end();
-            } catch(error) {
-                res.writeHead(400, library.headers);
-                res.write(JSON.stringify({
-                    "status": "false",
-                    "message": "新增失敗，欄位不正確",
-                    "error": error
-                }))
-                res.end();
-            }
-        });
+        postData(req, res, body);
     } else if (req.url === '/posts' && req.method === 'DELETE') {
         deleteAllData(res);
     } else if (req.url.startsWith('/posts/') && req.method === 'DELETE') {
