@@ -2,7 +2,9 @@ const http = require('http');
 const mongoose = require('mongoose');
 const Post = require('./models/post');
 const library = require('./library');
-const { deleteAll, deleteSingle } = require('./methods/delete');
+const getData = require('./methods/getData');
+const { deleteAllData, deleteSingleData } = require('./methods/deleteData');
+const { successHandler, errorHandler } = require('./handler');
 const dotenv = require('dotenv');
 dotenv.config({path:'./.env'});
 
@@ -27,14 +29,7 @@ const requestListener = async (req, res) => {
     })
 
     if (req.url === '/posts' && req.method === 'GET') {
-        const posts = await Post.find();
-        res.writeHead(200, library.headers);
-        res.write(JSON.stringify({
-            "status": "success",
-            "message": "取得成功12345",
-            "data": posts
-        }))
-        res.end();
+        getData(res);
     } else if ((req.url === '/posts' && req.method === 'POST')) {
         req.on('end', async () => {
             try {
@@ -58,9 +53,9 @@ const requestListener = async (req, res) => {
             }
         });
     } else if (req.url === '/posts' && req.method === 'DELETE') {
-        deleteAll(res);
+        deleteAllData(res);
     } else if (req.url.startsWith('/posts/') && req.method === 'DELETE') {
-        deleteSingle(req, res);
+        deleteSingleData(req, res);
     } else if (req.url.startsWith('/posts/') && req.method === 'PATCH') {
         req.on('end', async () => {
             try {
@@ -88,12 +83,7 @@ const requestListener = async (req, res) => {
         res.writeHead(200, library.headers);
         res.end();
     } else {
-        res.writeHead(404, library.headers);
-        res.write(JSON.stringify({
-            "status": "false",
-            "message": "無此網站路由"
-        }))
-        res.end();
+        errorHandler(res, '無此網站路由', 404);
     }
 };
 
