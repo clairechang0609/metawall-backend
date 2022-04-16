@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "1a7672a4-9c50-444d-a5f6-204abd6c39e6",
+		"name": "MetaWall",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://guarded-sea-58117.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"guarded-sea-58117",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"安安尼豪\",\n    \"name\": \"這是我的名字\",\n    \"likes\": 100000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://guarded-sea-58117.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"guarded-sea-58117",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteAll",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://guarded-sea-58117.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"guarded-sea-58117",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteSingle",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://guarded-sea-58117.herokuapp.com/posts/625a4570008a3557e7d3f096",
+					"protocol": "https",
+					"host": [
+						"guarded-sea-58117",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts",
+						"625a4570008a3557e7d3f096"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"這是我的PO文\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://guarded-sea-58117.herokuapp.com/posts/625a41f3008a3557e7d3f092",
+					"protocol": "https",
+					"host": [
+						"guarded-sea-58117",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts",
+						"625a41f3008a3557e7d3f092"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
