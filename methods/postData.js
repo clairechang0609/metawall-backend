@@ -9,7 +9,7 @@ const postData = async (req, res, body) => {
             successHandler(res, '新增成功', newPost);
         } catch(error) {
             const errorStr = Object.values(error.errors).map(item => item.message).join('、');
-            errorHandler(res, errorStr);
+            errorHandler(res, error);
         }
     });
 }
