@@ -28,11 +28,12 @@ const requestListener = async (req, res) => {
     req.on('data', chunk => {
         body += chunk;
     })
+    await new Promise((resolve) => req.on('end', resolve));
 
     if (req.url === '/posts' && req.method === 'GET') {
         getData(res);
     } else if ((req.url === '/posts' && req.method === 'POST')) {
-        postData(req, res, body);
+        postData(res, body);
     } else if (req.url === '/posts' && req.method === 'DELETE') {
         deleteAllData(res);
     } else if (req.url.startsWith('/posts/') && req.method === 'DELETE') {
